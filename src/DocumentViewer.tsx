@@ -1,5 +1,4 @@
-import type React from "react";
-import { Fragment } from "react";
+import React, { Fragment } from "react";
 import * as styles from "./document.css";
 
 export type DocumentViewerProps = {
