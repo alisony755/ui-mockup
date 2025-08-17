@@ -1,17 +1,27 @@
 "use client"
 
-import React from "react"
+import React, { useState } from "react"
 import * as styles from "./document-info.css"
+import EditDocumentModal from "./edit-document-modal"
 
 export type DocumentInfoProps = {
   className?: string
 }
 
 export const DocumentInfo: React.FC<DocumentInfoProps> = ({ className }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
+  const handleOpenModal = () => setIsModalOpen(true)
+  const handleCloseModal = () => setIsModalOpen(false)
+  const handleSubmit = (data: any) => {
+    console.log("Form submitted:", data)
+    setIsModalOpen(false)
+  }
+
   return (
     <div className={styles.container + (className ? ` ${className}` : "")}>
       <div className={styles.header}>
-        <button className={styles.editButton}>
+        <button className={styles.editButton} onClick={handleOpenModal}>
           <span className={styles.editIcon}>✏️</span>
           Edit
         </button>
@@ -100,12 +110,18 @@ export const DocumentInfo: React.FC<DocumentInfoProps> = ({ className }) => {
           <div className={styles.label}>CITATION</div>
           <div className={styles.value}>
             Houston, S. (n.d.). Constitution of Cherokee Nation, 1827. Tennessee Virtual Archive (TeVA).
-             <a href="https://teva.contentdm.oclc.org/digital/collection/fd/id/304" className={styles.link}>
+            <a href="https://teva.contentdm.oclc.org/digital/collection/fd/id/304" className={styles.link}>
               https://teva.contentdm.oclc.org/digital/collection/fd/id/304
             </a>
           </div>
         </div>
       </div>
+
+      <EditDocumentModal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        onSubmit={handleSubmit}
+      />
     </div>
   )
 }
