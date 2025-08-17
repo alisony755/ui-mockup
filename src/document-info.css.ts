@@ -22,6 +22,7 @@ export const editButton = style({
   border: "none",
   padding: "12px 30px",
   borderRadius: "4px",
+  fontFamily: "'Inter', sans-serif",
   fontWeight: "600",
   fontSize: "16px",
   cursor: "pointer",

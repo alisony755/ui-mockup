@@ -149,6 +149,7 @@ export const actionButton = style({
   padding: "12px 35px",
   backgroundColor: "#405372",
   color: "white",
+  fontFamily: "'Inter', sans-serif",
   fontWeight: "600",
   fontSize: "16px",
   borderRadius: "4px",

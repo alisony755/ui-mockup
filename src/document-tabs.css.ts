@@ -33,6 +33,7 @@ export const tabText = style({
   color: "white",
   fontSize: "20px",
   fontWeight: "600",
+  fontFamily: "'Inter', sans-serif",
   textAlign: "center" as const,
 })
 
