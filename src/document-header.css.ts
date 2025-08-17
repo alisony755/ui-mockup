@@ -2,10 +2,9 @@ import { style } from "@vanilla-extract/css";
 
 export const container = style({
   maxWidth: "1200px",
-  margin: "0 auto",
+  margin: "50px auto 20px auto",
   padding: "32px",
   backgroundColor: "#ffffff",
-  minHeight: "100vh",
 });
 
 export const documentLayout = style({
@@ -48,8 +47,8 @@ export const contentSection = style({
 
 export const breadcrumb = style({
   fontSize: "16px",
-  color: "#718096",
-  fontWeight: "400",
+  color: "#405372",
+  fontWeight: "600",
   marginBottom: "4px",
 });
 
@@ -149,7 +148,7 @@ export const actionButton = style({
   padding: "12px 24px",
   backgroundColor: "#405372",
   color: "white",
-  fontWeight: "500",
+  fontWeight: "600",
   fontSize: "16px",
   borderRadius: "4px",
   border: "none",
@@ -157,7 +156,8 @@ export const actionButton = style({
   transition: "background-color 0.2s ease",
   minWidth: "140px",
   ":hover": {
-    backgroundColor: "#555",
+    backgroundColor: "#6F85A9",
+    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
   },
 });
 
@@ -165,10 +165,6 @@ export const actionButtonMobile = style({
   padding: "10px 20px",
   fontSize: "14px",
   minWidth: "120px",
-});
-
-export const actionButtonHover = style({
-  backgroundColor: "#334155",
 });
 
 export const buttonIcon = style({

@@ -1,7 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
-import "./document.css.ts";
+import "./document-header.css.ts";
+import "./document-tabs.css.ts";
 
 const root = document.getElementById("root");
 
