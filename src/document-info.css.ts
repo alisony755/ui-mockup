@@ -28,6 +28,10 @@ export const editButton = style({
   display: "flex",
   alignItems: "center",
   gap: "6px",
+  ":hover": {
+    backgroundColor: "#6F85A9",
+    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
+  },
 })
 
 export const editIcon = style({
