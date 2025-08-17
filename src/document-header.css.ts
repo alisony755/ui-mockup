@@ -121,7 +121,7 @@ export const documentTypeTextMobile = style({
 
 export const description = style({
   fontSize: "16px",
-  color: "#4a5568",
+  color: "#000000",
   lineHeight: "1.6",
   marginBottom: "12px",
   maxWidth: "600px",
