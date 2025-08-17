@@ -49,7 +49,7 @@ export const breadcrumb = style({
   fontSize: "16px",
   color: "#405372",
   fontWeight: "600",
-  marginBottom: "4px",
+  marginBottom: "15px",
 });
 
 export const titleContainer = style({
@@ -145,7 +145,7 @@ export const actionButton = style({
   alignItems: "center",
   justifyContent: "center",
   gap: "8px",
-  padding: "12px 24px",
+  padding: "12px 35px",
   backgroundColor: "#405372",
   color: "white",
   fontWeight: "600",
