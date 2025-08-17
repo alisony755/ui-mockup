@@ -70,8 +70,9 @@ export const titleMobile = style({
 
 export const year = style({
   fontSize: "24px",
+  fontFamily: "'Spectral SC', serif",
   color: "#718096",
-  fontWeight: "400",
+  fontWeight: "600",
   marginLeft: "16px",
 });
 
