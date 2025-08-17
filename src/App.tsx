@@ -1,5 +1,5 @@
 import React from "react";
-import DocumentViewer from "./DocumentViewer";
+import DocumentViewer from "./DocumentHeader";
 
 export default function App() {
   return (

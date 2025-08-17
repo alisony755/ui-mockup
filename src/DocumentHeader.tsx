@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import * as styles from "./document.css";
 
-export type DocumentViewerProps = {
+export type DocumentHeaderProps = {
   className?: string;
 };
 
@@ -15,7 +15,7 @@ export type DocumentMetadata = {
   source?: string;
 };
 
-export const DocumentViewer: React.FC<DocumentViewerProps> = ({
+export const DocumentHeader: React.FC<DocumentHeaderProps> = ({
   className,
 }) => {
   const documentData: DocumentMetadata = {
@@ -116,4 +116,4 @@ export const DocumentViewer: React.FC<DocumentViewerProps> = ({
   );
 };
 
-export default DocumentViewer;
+export default DocumentHeader;
