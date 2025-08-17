@@ -100,7 +100,7 @@ export const DocumentInfo: React.FC<DocumentInfoProps> = ({ className }) => {
           <div className={styles.label}>CITATION</div>
           <div className={styles.value}>
             Houston, S. (n.d.). Constitution of Cherokee Nation, 1827. Tennessee Virtual Archive (TeVA).
-            <a href="https://teva.contentdm.oclc.org/digital/collection/fd/id/304" className={styles.link}>
+             <a href="https://teva.contentdm.oclc.org/digital/collection/fd/id/304" className={styles.link}>
               https://teva.contentdm.oclc.org/digital/collection/fd/id/304
             </a>
           </div>

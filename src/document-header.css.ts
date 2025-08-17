@@ -46,7 +46,7 @@ export const contentSection = style({
 });
 
 export const breadcrumb = style({
-  fontSize: "16px",
+  fontSize: "18px",
   color: "#405372",
   fontWeight: "600",
   marginBottom: "15px",
