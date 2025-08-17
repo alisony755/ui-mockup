@@ -131,6 +131,7 @@ export const descriptionMobile = style({
 });
 
 export const actionButtons = style({
+  margin: "10px 0 0 0",
   display: "flex",
   gap: "16px",
 });

@@ -24,6 +24,11 @@ export const tab = style ({
   },
 })
 
+export const activeTab = style({
+  backgroundColor: "#8D6660",
+  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
+});
+
 export const tabText = style({
   color: "white",
   fontSize: "20px",
