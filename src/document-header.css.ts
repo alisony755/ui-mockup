@@ -123,11 +123,11 @@ export const documentTypeTextMobile = style({
 });
 
 export const description = style({
-  fontSize: "16px",
+  fontSize: "18px",
   color: "#000000",
   lineHeight: "1.6",
   marginBottom: "12px",
-  maxWidth: "600px",
+  maxWidth: "700px",
 });
 
 export const descriptionMobile = style({
