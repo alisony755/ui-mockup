@@ -112,6 +112,11 @@ export const cancelButton = style({
   cursor: "pointer",
   minWidth: "120px",
   boxShadow: "0 4px 4px rgba(0, 0, 0, 0.3)",
+    selectors: {
+    "&:hover": {
+      backgroundColor: "#e8e8e8ff",
+    },
+  },
 })
 
 export const submitButton = style({
@@ -125,6 +130,11 @@ export const submitButton = style({
   cursor: "pointer",
   minWidth: "120px",
   boxShadow: "0 4px 4px rgba(0, 0, 0, 0.3)",
+    selectors: {
+    "&:hover": {
+      backgroundColor: "#3867AD",
+    },
+  },
 })
 
 export const keywordsContainer = style({
