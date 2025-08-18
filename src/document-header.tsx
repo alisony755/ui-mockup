@@ -21,7 +21,7 @@ export const DocumentHeader: React.FC<DocumentHeaderProps> = ({
   const documentData: DocumentMetadata = {
     title: "Constitution of Cherokee Nation",
     year: "1827",
-    collection: "Stories as Knowledge",
+    collection: "Stories as Knowledge /",
     description:
       "24 pages handwritten in ink that comprise the Cherokee Constitution of 1827. This early copy may have been written by Sam Houston. It was found in the 1827 Tennessee legislative papers and may have been given to the State of Tennessee in exchange for copies of Tennessee documents.",
     pageCount: 24,
@@ -43,7 +43,15 @@ export const DocumentHeader: React.FC<DocumentHeaderProps> = ({
 
           <div className={styles.contentSection}>
             <div>
-              <div className={styles.breadcrumb}>{documentData.collection} /</div>
+              <nav className={styles.breadcrumb}>
+                <a 
+                  href="https://dailp.northeastern.edu/collections/cwkw/stories-as-knowledge"
+                  className={styles.breadcrumb}
+                >
+                  {documentData.collection}
+                </a>
+              </nav>
+
               <div className={styles.titleContainer}>
                 <h1 className={`${styles.title} lg:text-5xl text-3xl`}>
                   {documentData.title}
