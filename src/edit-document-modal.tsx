@@ -11,19 +11,51 @@ export type EditDocumentModalProps = {
 }
 
 export const EditDocumentModal: React.FC<EditDocumentModalProps> = ({ isOpen, onClose, onSubmit }) => {
-  // Adding contributors
   const [contributors, setContributors] = useState<string[]>([""])
+  const [keywords, setKeywords] = useState<string[]>([
+    "Cherokee",
+    "Sovereignty",
+    "Traditionalism",
+    "Resistance",
+    "Native American Removal",
+  ])
+  const [newKeywords, setNewKeywords] = useState<Set<string>>(new Set())
+  const [showKeywordDropdown, setShowKeywordDropdown] = useState(false)
 
+  // Approved keywords list for dropdown
+  const approvedKeywords = [
+    "Colonialism",
+    "Government",
+    "Politics",
+    "History",
+    "Culture",
+    "Law",
+    "Constitution",
+    "Indigenous Rights",
+    "Treaty",
+    "Land Rights",
+    "Self-Determination",
+    "Tribal Governance",
+  ]
+
+  // Adding contributors
   const addContributor = () => {
     setContributors([...contributors, ""])
   }
 
-  // Adding keywords
-  const [keywords, setKeywords] = useState<string[]>([""])
-
-  const addKeyword = () => {
-    setKeywords([...keywords, ""])
+  // Removing keywords
+  const removeKeyword = (indexToRemove: number) => {
+    setKeywords(keywords.filter((_, index) => index !== indexToRemove))
   }
+
+  // Adding keywords
+  const addKeyword = (keyword: string) => {
+  if (!keywords.includes(keyword)) {
+    setKeywords([...keywords, keyword])
+    setNewKeywords((prev) => new Set(prev).add(keyword))
+  }
+  setShowKeywordDropdown(false)
+}
 
   // Adding subject headings
   const [subjectHeadings, setSubjectHeadings] = useState<string[]>([""])
@@ -62,6 +94,8 @@ export const EditDocumentModal: React.FC<EditDocumentModalProps> = ({ isOpen, on
 
         <form onSubmit={handleSubmit}>
           <div className={styles.formGrid}>
+
+            {/* Editing title */}
             <div className={styles.fieldGroup}>
               <label className={styles.label}>Title*</label>
               <input 
@@ -71,8 +105,9 @@ export const EditDocumentModal: React.FC<EditDocumentModalProps> = ({ isOpen, on
               />
             </div>
 
+            {/* Editing date created */}
             <div className={styles.fieldGroup}>
-              <label className={styles.label}>Date Written</label>
+              <label className={styles.label}>Date Created</label>
               <input 
                 type="text" 
                 className={styles.input} 
@@ -80,6 +115,7 @@ export const EditDocumentModal: React.FC<EditDocumentModalProps> = ({ isOpen, on
                 />
             </div>
 
+            {/* Editing genre */}
             <div className={styles.fieldGroup}>
               <label className={styles.label}>Genre</label>
               <input 
@@ -89,6 +125,7 @@ export const EditDocumentModal: React.FC<EditDocumentModalProps> = ({ isOpen, on
               />
             </div>
 
+            {/* Editing format */}
             <div className={styles.fieldGroup}>
               <label className={styles.label}>Format</label>
               <input 
@@ -98,6 +135,7 @@ export const EditDocumentModal: React.FC<EditDocumentModalProps> = ({ isOpen, on
               />
             </div>
 
+            {/* Editing pages */}
             <div className={styles.fieldGroup}>
               <label className={styles.label}>Pages [Start, End]</label>
               <input 
@@ -107,6 +145,7 @@ export const EditDocumentModal: React.FC<EditDocumentModalProps> = ({ isOpen, on
               />
             </div>
 
+            {/* Editing creator */}
             <div className={styles.fieldGroup}>
               <label className={styles.label}>Creator (separate by ';' if multiple)</label>
               <input 
@@ -117,6 +156,7 @@ export const EditDocumentModal: React.FC<EditDocumentModalProps> = ({ isOpen, on
             </div>
           </div>
 
+          {/* Editing contributors */}
           <div className={styles.fullWidthGroup}>
             <label className={styles.label}>Contributors</label>
             {contributors.map((_, index) => (
@@ -127,6 +167,7 @@ export const EditDocumentModal: React.FC<EditDocumentModalProps> = ({ isOpen, on
             </button>
           </div>
 
+          {/* Editing source */}
           <div className={styles.fullWidthGroup}>
             <label className={styles.label}>Source</label>
             <input 
@@ -136,6 +177,7 @@ export const EditDocumentModal: React.FC<EditDocumentModalProps> = ({ isOpen, on
             />
           </div>
 
+          {/* Editing DOI */}
           <div className={styles.fullWidthGroup}>
             <label className={styles.label}>DOI</label>
             <input 
@@ -145,16 +187,61 @@ export const EditDocumentModal: React.FC<EditDocumentModalProps> = ({ isOpen, on
             />
           </div>
 
+          {/* Editing keywords */}
           <div className={styles.fullWidthGroup}>
             <label className={styles.label}>Keywords</label>
-            {keywords.map((_, index) => (
-              <input key={index} type="text" className={styles.input} />
-            ))}
-            <button type="button" onClick={addKeyword} className={styles.addButton}>
-              + Add Keyword
-            </button>
-          </div>
+            
+            {/* Existing keyword tags */}
+            <div className={styles.keywordsContainer}>
+              {keywords.map((keyword, index) => (
+                <div
+                  key={index}
+                  className={
+                    newKeywords.has(keyword) ? styles.newKeywordTag : styles.keywordTag
+                  }
+                >
+                  <span>{keyword}</span>
+                  <button
+                    type="button"
+                    onClick={() => removeKeyword(index)}
+                    className={styles.removeKeywordButton}
+                  >
+                    ×
+                  </button>
+                </div>
+              ))}
+            </div>
+            
+            {/* Keyword dropdown */}
+            <div className={styles.keywordDropdownContainer}>
+              <button
+                type="button"
+                onClick={() => setShowKeywordDropdown(!showKeywordDropdown)}
+                className={styles.addKeywordButton}
+              >
+                + Keyword
+              </button>
+              
+              {showKeywordDropdown && (
+                <div className={styles.keywordDropdown}>
+                  {approvedKeywords
+                    .filter((keyword) => !keywords.includes(keyword))
+                    .map((keyword) => (
+                      <button
+                        key={keyword}
+                        type="button"
+                        onClick={() => addKeyword(keyword)}
+                        className={styles.keywordOption}
+                      >
+                        {keyword}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
 
+          {/* Editing subject headings */}
           <div className={styles.fullWidthGroup}>
             <label className={styles.label}>Subject Headings</label>
             {subjectHeadings.map((_, index) => (
@@ -165,6 +252,7 @@ export const EditDocumentModal: React.FC<EditDocumentModalProps> = ({ isOpen, on
             </button>
           </div>
 
+          {/* Editing languages */}
           <div className={styles.fullWidthGroup}>
             <label className={styles.label}>Languages</label>
             {languages.map((_, index) => (
@@ -175,16 +263,18 @@ export const EditDocumentModal: React.FC<EditDocumentModalProps> = ({ isOpen, on
             </button>
           </div>
 
+          {/* Editing spatial coverages */}
           <div className={styles.fullWidthGroup}>
-            <label className={styles.label}>Subject Headings</label>
-            {subjectHeadings.map((_, index) => (
+            <label className={styles.label}>Spatial Coverages</label>
+            {spatialCoverages.map((_, index) => (
               <input key={index} type="text" className={styles.input} />
             ))}
-            <button type="button" onClick={addSubjectHeading} className={styles.addButton}>
-              + Add Subject Heading
+            <button type="button" onClick={addSpatialCoverage} className={styles.addButton}>
+              + Add Spatial Coverage
             </button>
           </div>
 
+          {/* Editing citation */}
           <div className={styles.fullWidthGroup}>
             <label className={styles.label}>Citation</label>
             <textarea
@@ -194,6 +284,7 @@ export const EditDocumentModal: React.FC<EditDocumentModalProps> = ({ isOpen, on
 
           </div>
 
+          {/* Cancel and submit buttons */}
           <div className={styles.buttonGroup}>
             <button type="button" onClick={onClose} className={styles.cancelButton}>
               Cancel
