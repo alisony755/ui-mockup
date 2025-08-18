@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState } from "react"
-import * as styles from "./document-info.css"
+import * as styles from "../styles/document-info.css"
 import EditDocumentModal from "./edit-document-modal"
 
 export type DocumentInfoProps = {

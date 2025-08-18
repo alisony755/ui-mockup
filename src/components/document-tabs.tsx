@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState } from "react"
-import * as styles from "./document-tabs.css"
+import * as styles from "../styles/document-tabs.css"
 
 export type TabItem = {
   id: string

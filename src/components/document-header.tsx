@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import * as styles from "./document-header.css";
+import * as styles from "../styles/document-header.css";
 
 export type DocumentHeaderProps = {
   className?: string;

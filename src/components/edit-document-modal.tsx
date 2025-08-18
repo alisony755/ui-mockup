@@ -2,7 +2,7 @@
 
 import type React from "react"
 import { useState } from "react"
-import * as styles from "./edit-document-modal.css"
+import * as styles from "../styles/edit-document-modal.css"
 
 export type EditDocumentModalProps = {
   isOpen: boolean
@@ -38,11 +38,6 @@ export const EditDocumentModal: React.FC<EditDocumentModalProps> = ({ isOpen, on
     "Tribal Governance",
   ]
 
-  // Adding contributors
-  const addContributor = () => {
-    setContributors([...contributors, ""])
-  }
-
   // Removing keywords
   const removeKeyword = (indexToRemove: number) => {
     setKeywords(keywords.filter((_, index) => index !== indexToRemove))
@@ -50,12 +45,17 @@ export const EditDocumentModal: React.FC<EditDocumentModalProps> = ({ isOpen, on
 
   // Adding keywords
   const addKeyword = (keyword: string) => {
-  if (!keywords.includes(keyword)) {
-    setKeywords([...keywords, keyword])
-    setNewKeywords((prev) => new Set(prev).add(keyword))
+    if (!keywords.includes(keyword)) {
+      setKeywords([...keywords, keyword])
+      setNewKeywords((prev) => new Set(prev).add(keyword))
+    }
+    setShowKeywordDropdown(false)
   }
-  setShowKeywordDropdown(false)
-}
+
+  // Adding contributors
+  const addContributor = () => {
+    setContributors([...contributors, ""])
+  }
 
   // Adding subject headings
   const [subjectHeadings, setSubjectHeadings] = useState<string[]>([""])
@@ -111,7 +111,7 @@ export const EditDocumentModal: React.FC<EditDocumentModalProps> = ({ isOpen, on
               <input 
                 type="text" 
                 className={styles.input} 
-                placeholder="1827"
+                value="1827"
                 />
             </div>
 
@@ -121,7 +121,7 @@ export const EditDocumentModal: React.FC<EditDocumentModalProps> = ({ isOpen, on
               <input 
                 type="text" 
                 className={styles.input} 
-                placeholder="Legal Document"
+                value="Legal Document"
               />
             </div>
 
@@ -131,7 +131,7 @@ export const EditDocumentModal: React.FC<EditDocumentModalProps> = ({ isOpen, on
               <input 
                 type="text" 
                 className={styles.input} 
-                placeholder="PDF"
+                value="PDF"
               />
             </div>
 
@@ -141,7 +141,7 @@ export const EditDocumentModal: React.FC<EditDocumentModalProps> = ({ isOpen, on
               <input 
                 type="text" 
                 className={styles.input} 
-                placeholder="[1, 24]"
+                value="[1, 24]"
               />
             </div>
 
@@ -151,7 +151,7 @@ export const EditDocumentModal: React.FC<EditDocumentModalProps> = ({ isOpen, on
               <input 
                 type="text" 
                 className={styles.input} 
-                placeholder="Sam Houston"
+                value="Sam Houston"
               />
             </div>
           </div>
@@ -173,7 +173,7 @@ export const EditDocumentModal: React.FC<EditDocumentModalProps> = ({ isOpen, on
             <input 
               type="text" 
               className={styles.input} 
-              placeholder="https://teva.contentdm.oclc.org/digital/collection/tfd/id/304"
+              value="https://teva.contentdm.oclc.org/digital/collection/tfd/id/304"
             />
           </div>
 
@@ -183,7 +183,7 @@ export const EditDocumentModal: React.FC<EditDocumentModalProps> = ({ isOpen, on
             <input 
               type="text" 
               className={styles.input} 
-              placeholder="https://doi.org/10.1000/182"
+              value="https://doi.org/10.1000/182"
             />
           </div>
 

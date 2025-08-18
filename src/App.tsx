@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import DocumentViewer from "./document-header";
-import DocumentTabs from "./document-tabs";
-import DocumentInfo from "./document-info";
-import EditDocumentModal from "./edit-document-modal";
+import DocumentViewer from "./components/document-header";
+import DocumentTabs from "./components/document-tabs";
+import DocumentInfo from "./components/document-info";
+import EditDocumentModal from "./components/edit-document-modal";
 
 export default function App() {
   const [isModalOpen, setModalOpen] = useState(false);
