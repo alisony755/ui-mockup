@@ -3,6 +3,8 @@
 import type React from "react"
 import { useState } from "react"
 import * as styles from "../styles/edit-document-modal.css"
+import { useTagSelector } from "../hooks/use-tag-selector"
+import { TagSelector } from "./tag-selector"
 
 export type EditDocumentModalProps = {
   isOpen: boolean
@@ -12,17 +14,13 @@ export type EditDocumentModalProps = {
 
 export const EditDocumentModal: React.FC<EditDocumentModalProps> = ({ isOpen, onClose, onSubmit }) => {
   const [contributors, setContributors] = useState<string[]>([""])
-  const [keywords, setKeywords] = useState<string[]>([
-    "Cherokee",
-    "Sovereignty",
-    "Traditionalism",
-    "Resistance",
-    "Native American Removal",
-  ])
-  const [newKeywords, setNewKeywords] = useState<Set<string>>(new Set())
-  const [showKeywordDropdown, setShowKeywordDropdown] = useState(false)
 
-  // Approved keywords list for dropdown
+  // Adding contributors
+  const addContributor = () => {
+    setContributors([...contributors, ""])
+  }
+
+  // Handle keyword editing
   const approvedKeywords = [
     "Colonialism",
     "Government",
@@ -37,25 +35,18 @@ export const EditDocumentModal: React.FC<EditDocumentModalProps> = ({ isOpen, on
     "Self-Determination",
     "Tribal Governance",
   ]
-
-  // Removing keywords
-  const removeKeyword = (indexToRemove: number) => {
-    setKeywords(keywords.filter((_, index) => index !== indexToRemove))
-  }
-
-  // Adding keywords
-  const addKeyword = (keyword: string) => {
-    if (!keywords.includes(keyword)) {
-      setKeywords([...keywords, keyword])
-      setNewKeywords((prev) => new Set(prev).add(keyword))
-    }
-    setShowKeywordDropdown(false)
-  }
-
-  // Adding contributors
-  const addContributor = () => {
-    setContributors([...contributors, ""])
-  }
+  
+  const {
+    tags: keywords,
+    newTags: newKeywords,
+    showDropdown: showKeywordDropdown,
+    setShowDropdown: setShowKeywordDropdown,
+    addTag: addKeyword,
+    removeTag: removeKeyword,
+  } = useTagSelector(
+    ["Cherokee", "Sovereignty", "Traditionalism", "Resistance", "Native American Removal"],
+    approvedKeywords
+)
 
   // Adding subject headings
   const [subjectHeadings, setSubjectHeadings] = useState<string[]>([""])
@@ -101,7 +92,7 @@ export const EditDocumentModal: React.FC<EditDocumentModalProps> = ({ isOpen, on
               <input 
                 type="text" 
                 className={styles.input} 
-                placeholder="Constitution of Cherokee Nation"
+                value="Constitution of Cherokee Nation"
               />
             </div>
 
@@ -188,58 +179,16 @@ export const EditDocumentModal: React.FC<EditDocumentModalProps> = ({ isOpen, on
           </div>
 
           {/* Editing keywords */}
-          <div className={styles.fullWidthGroup}>
-            <label className={styles.label}>Keywords</label>
-            
-            {/* Existing keyword tags */}
-            <div className={styles.keywordsContainer}>
-              {keywords.map((keyword, index) => (
-                <div
-                  key={index}
-                  className={
-                    newKeywords.has(keyword) ? styles.newKeywordTag : styles.keywordTag
-                  }
-                >
-                  <span>{keyword}</span>
-                  <button
-                    type="button"
-                    onClick={() => removeKeyword(index)}
-                    className={styles.removeKeywordButton}
-                  >
-                    ×
-                  </button>
-                </div>
-              ))}
-            </div>
-            
-            {/* Keyword dropdown */}
-            <div className={styles.keywordDropdownContainer}>
-              <button
-                type="button"
-                onClick={() => setShowKeywordDropdown(!showKeywordDropdown)}
-                className={styles.addKeywordButton}
-              >
-                + Keyword
-              </button>
-              
-              {showKeywordDropdown && (
-                <div className={styles.keywordDropdown}>
-                  {approvedKeywords
-                    .filter((keyword) => !keywords.includes(keyword))
-                    .map((keyword) => (
-                      <button
-                        key={keyword}
-                        type="button"
-                        onClick={() => addKeyword(keyword)}
-                        className={styles.keywordOption}
-                      >
-                        {keyword}
-                      </button>
-                    ))}
-                  </div>
-                )}
-              </div>
-            </div>
+          <TagSelector
+            label="Keywords"
+            tags={keywords}
+            approvedTags={approvedKeywords}
+            newTags={newKeywords}
+            onAdd={addKeyword}
+            onRemove={removeKeyword}
+            addButtonLabel="+ Keyword"
+          />
+
 
           {/* Editing subject headings */}
           <div className={styles.fullWidthGroup}>
