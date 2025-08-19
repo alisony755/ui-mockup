@@ -7,13 +7,6 @@ export const fullWidthGroup = style({
   marginBottom: "16px",
 })
 
-export const label = style({
-  fontFamily: "'Inter', sans-serif",
-  fontSize: "14px",
-  fontWeight: 600,
-  marginBottom: "8px",
-})
-
 export const tagsContainer = style({
   display: "flex",
   flexWrap: "wrap",
