@@ -5,6 +5,7 @@ import { useState } from "react"
 import * as styles from "../styles/edit-document-modal.css"
 import { useTagSelector } from "../hooks/use-tag-selector"
 import { TagSelector } from "./tag-selector"
+import TextareaAutosize from "react-textarea-autosize";
 // import { Cite } from 'citation-js/core'
 
 export type EditDocumentModalProps = {
@@ -241,10 +242,12 @@ export const EditDocumentModal: React.FC<EditDocumentModalProps> = ({ isOpen, on
           {/* Editing description */}
             <div className={styles.fullWidthGroup}>
             <label className={styles.label}>Description</label>
-            <textarea
+            <TextareaAutosize
               className={styles.input}
               value={description}
               onChange={(e) => setDescription(e.target.value)}
+              minRows={1}
+              maxRows={10}
             />
           </div>
 
@@ -328,10 +331,12 @@ export const EditDocumentModal: React.FC<EditDocumentModalProps> = ({ isOpen, on
           {/* Editing citation */}
           <div className={styles.fullWidthGroup}>
             <label className={styles.label}>Citation</label>
-            <textarea
+            <TextareaAutosize
               className={styles.input}
               value={citation}
               onChange={(e) => setCitation(e.target.value)}
+              minRows={1}
+              maxRows={10}
             />
           </div>
 

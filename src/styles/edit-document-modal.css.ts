@@ -71,6 +71,7 @@ export const input = style({
   padding: "8px 12px",
   border: "1px solid #ccc",
   borderRadius: "4px",
+  fontFamily: "'Inter', sans-serif",
   fontSize: "14px",
   backgroundColor: "white",
 })
@@ -137,3 +138,4 @@ export const submitButton = style({
     },
   },
 })
+
