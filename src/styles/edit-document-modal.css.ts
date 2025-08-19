@@ -63,6 +63,7 @@ export const fullWidthGroup = style({
 export const label = style({
   fontSize: "16px",
   fontWeight: "500",
+  marginBottom: "3px",
   color: "#000000ff",
 })
 

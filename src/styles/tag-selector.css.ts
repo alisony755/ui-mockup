@@ -42,6 +42,13 @@ export const newTag = style([
   },
 ])
 
+export const label = style({
+  fontSize: "16px",
+  fontWeight: "500",
+  marginBottom: "7px",
+  color: "#000000ff",
+})
+
 export const removeTagButton = style({
   background: "none",
   border: "none",

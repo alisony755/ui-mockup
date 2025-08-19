@@ -63,13 +63,13 @@ export const field = style({
   flexDirection: "column",
   gap: "8px",
   paddingBottom: "16px",
-  borderBottom: "1px solid #e5e5e5",
+  borderBottom: "1px solid #ADADAD",
 })
 
 export const label = style({
   fontSize: "20px",
   fontWeight: "600",
-  color: "#8B7355",
+  color: "#8D6660",
   textTransform: "uppercase",
   letterSpacing: "0.5px",
 })

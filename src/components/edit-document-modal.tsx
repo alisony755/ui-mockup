@@ -5,6 +5,7 @@ import { useState } from "react"
 import * as styles from "../styles/edit-document-modal.css"
 import { useTagSelector } from "../hooks/use-tag-selector"
 import { TagSelector } from "./tag-selector"
+// import { Cite } from 'citation-js/core'
 
 export type EditDocumentModalProps = {
   isOpen: boolean
@@ -16,6 +17,7 @@ export const EditDocumentModal: React.FC<EditDocumentModalProps> = ({ isOpen, on
   const [contributors, setContributors] = useState<string[]>([""])
   const [title, setTitle] = useState("Constitution of Cherokee Nation")
   const [date, setDate] = useState("1827")
+  const [description, setDescription] = useState("24 pages handwritten in ink that comprise the Cherokee Constitution of 1827. This early copy may have been written by Sam Houston. It was found in the 1827 Tennessee legislative papers and may have been given to the State of Tennessee in exchange for copies of Tennessee documents.")
   const [genre, setGenre] = useState("Legal Document")
   const [format, setFormat] = useState("PDF")
   const [pages, setPages] = useState("[1, 24]")
@@ -134,6 +136,22 @@ export const EditDocumentModal: React.FC<EditDocumentModalProps> = ({ isOpen, on
     approvedCoverages
   )
 
+  /*
+  // Handle citation generation
+  const { Cite } = require('@citation-js/core');
+  require('@citation-js/plugin-csl');
+
+  const citationMetadata = {
+    title: title,
+    author: [ { literal: creator } ],
+    issued: { "date-parts": [[date]] },
+    type: "book" 
+  }
+
+  var cite = new Cite(citationMetadata)
+  cite = cite.format('bibliography', { format: 'text', style: 'apa' })
+  */
+
   // Handle form submission
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -173,6 +191,7 @@ export const EditDocumentModal: React.FC<EditDocumentModalProps> = ({ isOpen, on
                 />
             </div>
 
+
             {/* Editing genre */}
             <div className={styles.fieldGroup}>
               <label className={styles.label}>Genre</label>
@@ -195,6 +214,7 @@ export const EditDocumentModal: React.FC<EditDocumentModalProps> = ({ isOpen, on
               />
             </div>
 
+
             {/* Editing pages */}
             <div className={styles.fieldGroup}>
               <label className={styles.label}>Pages [Start, End]</label>
@@ -216,6 +236,16 @@ export const EditDocumentModal: React.FC<EditDocumentModalProps> = ({ isOpen, on
                 onChange={(e) => setCreator(e.target.value)}
               />
             </div>
+          </div>
+
+          {/* Editing description */}
+            <div className={styles.fullWidthGroup}>
+            <label className={styles.label}>Description</label>
+            <textarea
+              className={styles.input}
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            />
           </div>
 
           {/* Editing contributors */}

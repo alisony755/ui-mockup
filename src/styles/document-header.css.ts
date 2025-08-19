@@ -50,6 +50,7 @@ export const breadcrumb = style({
   color: "#405372",
   fontWeight: "600",
   marginBottom: "15px",
+  textDecoration: "none",
   ":hover": {
     textDecoration: "underline",
   },
