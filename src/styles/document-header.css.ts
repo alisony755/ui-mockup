@@ -128,7 +128,7 @@ export const description = style({
   color: "#000000",
   lineHeight: "1.6",
   marginBottom: "12px",
-  maxWidth: "700px",
+  maxWidth: "900px",
 });
 
 export const descriptionMobile = style({

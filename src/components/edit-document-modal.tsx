@@ -18,7 +18,7 @@ export const EditDocumentModal: React.FC<EditDocumentModalProps> = ({ isOpen, on
   const [contributors, setContributors] = useState<string[]>([""])
   const [title, setTitle] = useState("Constitution of Cherokee Nation")
   const [date, setDate] = useState("1827")
-  const [description, setDescription] = useState("24 pages handwritten in ink that comprise the Cherokee Constitution of 1827. This early copy may have been written by Sam Houston. It was found in the 1827 Tennessee legislative papers and may have been given to the State of Tennessee in exchange for copies of Tennessee documents.")
+  const [description, setDescription] = useState("A product of a convention held in early July 1827 at New Echota, Georgia, the constitution appears to be a version of the American Constitution adapted to suit Cherokee needs. The constitution does not represent a position of assimilation to white society but, rather, a conscious strategy to resist removal and maintain autonomy. However, traditionalists saw it as one more concession to white, Christian authority.")
   const [genre, setGenre] = useState("Legal Document")
   const [format, setFormat] = useState("PDF")
   const [pages, setPages] = useState("[1, 24]")
@@ -191,8 +191,21 @@ export const EditDocumentModal: React.FC<EditDocumentModalProps> = ({ isOpen, on
                 onChange={(e) => setDate(e.target.value)}
                 />
             </div>
+          </div>
+            
+          {/* Editing description */}
+            <div className={styles.fullWidthGroup}>
+              <label className={styles.label}>Description</label>
+              <TextareaAutosize
+                className={styles.input}
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                minRows={1}
+                maxRows={10}
+              />
+            </div>
 
-
+          <div className={styles.formGrid}>
             {/* Editing genre */}
             <div className={styles.fieldGroup}>
               <label className={styles.label}>Genre</label>
@@ -237,18 +250,6 @@ export const EditDocumentModal: React.FC<EditDocumentModalProps> = ({ isOpen, on
                 onChange={(e) => setCreator(e.target.value)}
               />
             </div>
-          </div>
-
-          {/* Editing description */}
-            <div className={styles.fullWidthGroup}>
-            <label className={styles.label}>Description</label>
-            <TextareaAutosize
-              className={styles.input}
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              minRows={1}
-              maxRows={10}
-            />
           </div>
 
           {/* Editing contributors */}

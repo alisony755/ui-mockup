@@ -22,8 +22,7 @@ export const DocumentHeader: React.FC<DocumentHeaderProps> = ({
     title: "Constitution of Cherokee Nation",
     year: "1827",
     collection: "Stories as Knowledge /",
-    description:
-      "24 pages handwritten in ink that comprise the Cherokee Constitution of 1827. This early copy may have been written by Sam Houston. It was found in the 1827 Tennessee legislative papers and may have been given to the State of Tennessee in exchange for copies of Tennessee documents.",
+    description: "A product of a convention held in early July 1827 at New Echota, Georgia, the constitution appears to be a version of the American Constitution adapted to suit Cherokee needs. The constitution does not represent a position of assimilation to white society but, rather, a conscious strategy to resist removal and maintain autonomy. However, traditionalists saw it as one more concession to white, Christian authority.",
     pageCount: 24,
     author: "Sam Houston",
     source: "1827 Tennessee legislative papers",
