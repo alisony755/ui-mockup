@@ -22,7 +22,7 @@ export const EditDocumentModal: React.FC<EditDocumentModalProps> = ({ isOpen, on
   const [creator, setCreator] = useState("Sam Houston")
   const [source, setSource] = useState("https://teva.contentdm.oclc.org/digital/collection/tfd/id/304")
   const [doi, setDOI] = useState("https://doi.org/10.1000/182")
-  const [citation, setCitation] = useState("Sam Houston")
+  const [citation, setCitation] = useState("Houston, S. (n.d.). Constitution of Cherokee Nation, 1827. Tennessee Virtual Archive (TeVA). https://teva.contentdm.oclc.org/digital/collection/tfd/id/304")
 
   // Adding contributors
   const addContributor = () => {
@@ -201,7 +201,8 @@ export const EditDocumentModal: React.FC<EditDocumentModalProps> = ({ isOpen, on
               <input 
                 type="text" 
                 className={styles.input} 
-                value="[1, 24]"
+                value={pages}
+                onChange={(e) => setPages(e.target.value)}
               />
             </div>
 
@@ -211,7 +212,8 @@ export const EditDocumentModal: React.FC<EditDocumentModalProps> = ({ isOpen, on
               <input 
                 type="text" 
                 className={styles.input} 
-                value="Sam Houston"
+                value={creator}
+                onChange={(e) => setCreator(e.target.value)}
               />
             </div>
           </div>
@@ -233,7 +235,8 @@ export const EditDocumentModal: React.FC<EditDocumentModalProps> = ({ isOpen, on
             <input 
               type="text" 
               className={styles.input} 
-              value="https://teva.contentdm.oclc.org/digital/collection/tfd/id/304"
+              value={source}
+              onChange={(e) => setSource(e.target.value)}
             />
           </div>
 
@@ -243,7 +246,8 @@ export const EditDocumentModal: React.FC<EditDocumentModalProps> = ({ isOpen, on
             <input 
               type="text" 
               className={styles.input} 
-              value="https://doi.org/10.1000/182"
+              value={doi}
+              onChange={(e) => setDOI(e.target.value)}
             />
           </div>
 
@@ -296,9 +300,9 @@ export const EditDocumentModal: React.FC<EditDocumentModalProps> = ({ isOpen, on
             <label className={styles.label}>Citation</label>
             <textarea
               className={styles.input}
-              value={`Houston, S. (n.d.). Constitution of Cherokee Nation, 1827. Tennessee Virtual Archive (TeVA). https://teva.contentdm.oclc.org/digital/collection/tfd/id/304`}
+              value={citation}
+              onChange={(e) => setCitation(e.target.value)}
             />
-
           </div>
 
           {/* Cancel and submit buttons */}
