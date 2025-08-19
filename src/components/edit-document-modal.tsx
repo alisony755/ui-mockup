@@ -14,6 +14,15 @@ export type EditDocumentModalProps = {
 
 export const EditDocumentModal: React.FC<EditDocumentModalProps> = ({ isOpen, onClose, onSubmit }) => {
   const [contributors, setContributors] = useState<string[]>([""])
+  const [title, setTitle] = useState("Constitution of Cherokee Nation")
+  const [date, setDate] = useState("1827")
+  const [genre, setGenre] = useState("Legal Document")
+  const [format, setFormat] = useState("PDF")
+  const [pages, setPages] = useState("[1, 24]")
+  const [creator, setCreator] = useState("Sam Houston")
+  const [source, setSource] = useState("https://teva.contentdm.oclc.org/digital/collection/tfd/id/304")
+  const [doi, setDOI] = useState("https://doi.org/10.1000/182")
+  const [citation, setCitation] = useState("Sam Houston")
 
   // Adding contributors
   const addContributor = () => {
@@ -148,7 +157,8 @@ export const EditDocumentModal: React.FC<EditDocumentModalProps> = ({ isOpen, on
               <input 
                 type="text" 
                 className={styles.input} 
-                value="Constitution of Cherokee Nation"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
               />
             </div>
 
@@ -158,7 +168,8 @@ export const EditDocumentModal: React.FC<EditDocumentModalProps> = ({ isOpen, on
               <input 
                 type="text" 
                 className={styles.input} 
-                value="1827"
+                value={date}
+                onChange={(e) => setDate(e.target.value)}
                 />
             </div>
 
@@ -168,7 +179,8 @@ export const EditDocumentModal: React.FC<EditDocumentModalProps> = ({ isOpen, on
               <input 
                 type="text" 
                 className={styles.input} 
-                value="Legal Document"
+                value={genre}
+                onChange={(e) => setGenre(e.target.value)}
               />
             </div>
 
@@ -176,9 +188,10 @@ export const EditDocumentModal: React.FC<EditDocumentModalProps> = ({ isOpen, on
             <div className={styles.fieldGroup}>
               <label className={styles.label}>Format</label>
               <input 
-                type="text" 
+                type="text"
                 className={styles.input} 
-                value="PDF"
+                value={format}
+                onChange={(e) => setFormat(e.target.value)}
               />
             </div>
 
@@ -283,7 +296,7 @@ export const EditDocumentModal: React.FC<EditDocumentModalProps> = ({ isOpen, on
             <label className={styles.label}>Citation</label>
             <textarea
               className={styles.input}
-              placeholder={`Houston, S. (n.d.). Constitution of Cherokee Nation, 1827. Tennessee Virtual Archive (TeVA). https://teva.contentdm.oclc.org/digital/collection/tfd/id/304`}
+              value={`Houston, S. (n.d.). Constitution of Cherokee Nation, 1827. Tennessee Virtual Archive (TeVA). https://teva.contentdm.oclc.org/digital/collection/tfd/id/304`}
             />
 
           </div>
