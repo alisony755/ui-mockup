@@ -46,28 +46,84 @@ export const EditDocumentModal: React.FC<EditDocumentModalProps> = ({ isOpen, on
   } = useTagSelector(
     ["Cherokee", "Sovereignty", "Traditionalism", "Resistance", "Native American Removal"],
     approvedKeywords
-)
+  )
 
-  // Adding subject headings
-  const [subjectHeadings, setSubjectHeadings] = useState<string[]>([""])
+  // Handle subject heading editing
+  const approvedHeadings = [
+    "Cherokee Political Structure",
+    "Sacred Relationships to Land",
+    "Indigenous Self-Determination",
+    "Ecological Stewardship",
+    "Colonial Disruption and Resilience",
+    "Ceremony and Sacred Practice",
+    "Indigenous Governance Models",
+  ]
+  
+  const {
+    tags: subjectHeadings,
+    newTags: newHeadings,
+    showDropdown: showHeadingDropdown,
+    setShowDropdown: setShowHeadingDropdown,
+    addTag: addHeading,
+    removeTag: removeHeading,
+  } = useTagSelector(
+    ["Cherokee Political Structure", "Sacred Relationships to Land", "Indigenous Self-Determination"],
+    approvedHeadings
+  )
 
-  const addSubjectHeading = () => {
-    setSubjectHeadings([...subjectHeadings, ""])
-  }
+  // Handle language editing
+  const approvedLanguages = [
+    "English",
+    "Mandarin Chinese",
+    "Hindi",
+    "Spanish",
+    "French",
+    "Arabic",
+    "Bengali",
+    "Portuguese",
+    "Navajo",
+    "Cree",
+    "Sioux",
+    "Chippewa",
+  ]
+  
+  const {
+    tags: languages,
+    newTags: newLanguages,
+    showDropdown: showLanguageDropdown,
+    setShowDropdown: setShowLanguageDropdown,
+    addTag: addLanguage,
+    removeTag: removeLanguage,
+  } = useTagSelector(
+    ["English"],
+    approvedLanguages
+  )
 
-  // Adding languages
-  const [languages, setLanguages] = useState<string[]>([""])
+  // Handle spatial coverage editing
+  // TODO: Could use API to fetch location names (figure out what kinds of location names to include)
+  const approvedCoverages = [
+    "New Echota, GA",
+    "Tennessee, USA",
+    "Boston, MA",
+    "New York City, NY",
+    "Los Angeles, CA",
+    "Tokyo, Japan",
+    "Beijing, China",
+    "Paris, France",
+    "Dubai, UAE",
+  ]
 
-  const addLanguage = () => {
-    setLanguages([...languages, ""])
-  }
-
-  // Adding spatial coverages
-  const [spatialCoverages, setSpatialCoverages] = useState<string[]>([""])
-
-  const addSpatialCoverage = () => {
-    setSpatialCoverages([...spatialCoverages, ""])
-  }
+  const {
+    tags: spatialCoverages,
+    newTags: newCoverages,
+    showDropdown: showCoverageDropdown,
+    setShowDropdown: setShowCoverageDropdown,
+    addTag: addCoverage,
+    removeTag: removeCoverage,
+  } = useTagSelector(
+    ["New Echota, GA", "Tennessee, USA"],
+    approvedCoverages
+  )
 
   // Handle form submission
   const handleSubmit = (e: React.FormEvent) => {
@@ -189,39 +245,38 @@ export const EditDocumentModal: React.FC<EditDocumentModalProps> = ({ isOpen, on
             addButtonLabel="+ Keyword"
           />
 
-
           {/* Editing subject headings */}
-          <div className={styles.fullWidthGroup}>
-            <label className={styles.label}>Subject Headings</label>
-            {subjectHeadings.map((_, index) => (
-              <input key={index} type="text" className={styles.input} />
-            ))}
-            <button type="button" onClick={addSubjectHeading} className={styles.addButton}>
-              + Add Subject Heading
-            </button>
-          </div>
+          <TagSelector
+            label="Subject Headings"
+            tags={subjectHeadings}
+            approvedTags={approvedHeadings}
+            newTags={newHeadings}
+            onAdd={addHeading}
+            onRemove={removeHeading}
+            addButtonLabel="+ Subject Heading"
+          />
 
           {/* Editing languages */}
-          <div className={styles.fullWidthGroup}>
-            <label className={styles.label}>Languages</label>
-            {languages.map((_, index) => (
-              <input key={index} type="text" className={styles.input} />
-            ))}
-            <button type="button" onClick={addLanguage} className={styles.addButton}>
-              + Add Language
-            </button>
-          </div>
+          <TagSelector
+            label="Languages"
+            tags={languages}
+            approvedTags={approvedLanguages}
+            newTags={newLanguages}
+            onAdd={addLanguage}
+            onRemove={removeLanguage}
+            addButtonLabel="+ Language"
+          />
 
           {/* Editing spatial coverages */}
-          <div className={styles.fullWidthGroup}>
-            <label className={styles.label}>Spatial Coverages</label>
-            {spatialCoverages.map((_, index) => (
-              <input key={index} type="text" className={styles.input} />
-            ))}
-            <button type="button" onClick={addSpatialCoverage} className={styles.addButton}>
-              + Add Spatial Coverage
-            </button>
-          </div>
+          <TagSelector
+            label="Spatial Coverages"
+            tags={spatialCoverages}
+            approvedTags={approvedCoverages}
+            newTags={newCoverages}
+            onAdd={addCoverage}
+            onRemove={removeCoverage}
+            addButtonLabel="+ Spatial Coverage"
+          />
 
           {/* Editing citation */}
           <div className={styles.fullWidthGroup}>

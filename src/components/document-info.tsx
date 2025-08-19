@@ -103,7 +103,7 @@ export const DocumentInfo: React.FC<DocumentInfoProps> = ({ className }) => {
 
         <div className={styles.field}>
           <div className={styles.label}>SPATIAL COVERAGE</div>
-          <div className={styles.value}>New Echota, Georgia (written), Tennessee, USA (found)</div>
+          <div className={styles.value}>New Echota, GA (written), Tennessee, USA (found)</div>
         </div>
 
         <div className={styles.field}>
