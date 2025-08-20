@@ -6,7 +6,7 @@ import * as styles from "../styles/edit-document-modal.css"
 import { useTagSelector } from "../hooks/use-tag-selector"
 import { TagSelector } from "./tag-selector"
 import TextareaAutosize from "react-textarea-autosize";
-// import { Cite } from 'citation-js/core'
+import Cite from "citation-js";
 
 export type EditDocumentModalProps = {
   isOpen: boolean
@@ -137,21 +137,18 @@ export const EditDocumentModal: React.FC<EditDocumentModalProps> = ({ isOpen, on
     approvedCoverages
   )
 
-  /*
   // Handle citation generation
-  const { Cite } = require('@citation-js/core');
-  require('@citation-js/plugin-csl');
-
   const citationMetadata = {
     title: title,
     author: [ { literal: creator } ],
     issued: { "date-parts": [[date]] },
-    type: "book" 
+    type: "book",
+    URL: "https://teva.contentdm.oclc.org/digital/collection/tfd/id/304", 
+    page: "1-24"
   }
 
-  var cite = new Cite(citationMetadata)
-  cite = cite.format('bibliography', { format: 'text', style: 'apa' })
-  */
+  const cite = new Cite(citationMetadata)
+  const docCitation = cite.format('bibliography', { format: 'text', style: 'apa' })
 
   // Handle form submission
   const handleSubmit = (e: React.FormEvent) => {
@@ -334,7 +331,7 @@ export const EditDocumentModal: React.FC<EditDocumentModalProps> = ({ isOpen, on
             <label className={styles.label}>Citation</label>
             <TextareaAutosize
               className={styles.input}
-              value={citation}
+              value={docCitation}
               onChange={(e) => setCitation(e.target.value)}
               minRows={1}
               maxRows={10}
